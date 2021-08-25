@@ -1,9 +1,0 @@
-Hi Alfred,
-
-I hope you are having a nice day.
-
-Just a quick question, how do I add passportjs to the package.json dependencies file?
-I was unable to locate information on which version of passport I am using that has 
-to be entered when adding it manually.
-
-
