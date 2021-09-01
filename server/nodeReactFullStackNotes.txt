@@ -1,9 +1,18 @@
+Adding dependencies to package.json
+
 Hi Alfred,
 
-I hope you are having a nice day.
-
-Just a quick question, how do I add passportjs to the package.json dependencies file?
+Just a quick question, how do I add passport to the package.json dependencies file?
 I was unable to locate information on which version of passport I am using that has 
 to be entered when adding it manually.
+I found the answer somewhere!
 
+Hi Neil, 
+
+It looks like you have removed the configs folder. It is needed to run your application.
+
+Regarding Passport, npm install passport will install the right version for your Node.js installation 
+and update the package.json file automatically. Adding a package manually is not advised unless you are sure 
+that it is compatible with your setup. Doing so only requires adding an entry inside the dependencies object 
+inside package.json. The entry consists of: “name-of-the-module”: “version”
 
