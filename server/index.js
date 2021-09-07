@@ -31,7 +31,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
-require('./models/user');
+require('./models/User');
 require('./services/passport');
 
 url = 'mongodb+srv://emaily:8865zoLipCIC2VIV@cluster0.6tblh.mongodb.net/game-example?retryWrites=true&w=majority';
