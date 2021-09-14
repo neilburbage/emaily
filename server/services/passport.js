@@ -1,13 +1,21 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const mongoose = require('mongoose');
+const cookieSession = require('cookie-session');
 const keys = require('../config/keys');
 
 const User = mongoose.model('users');
 
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
+passport.serializeUser((user, done) => { // we call passport.serializeUser 
+    done(null, user.id); // we define an arrow function and pass it to serializeUser
+});            
+
+passport.deserializeUser((id, done) => { 
+    User.findById(id)
+        .then(user => {
+            done(null, user);
+    });
+});  
 
 passport.use(
     new GoogleStrategy(

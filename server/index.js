@@ -1,14 +1,28 @@
 // index.js component is for pulling libraries and frameworks into the app build out 
-// re: to do the heavy lifting index.js is for booting up this application
+// re: to do the heavy lifting index.js is for booting up this application, and where we do
+// our initial application setup.  
 
 const express = require('express');
 const mongoose = require('mongoose');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 const keys = require('./config/keys');
 require('./models/User');
 require('./services/passport');
 
 mongoose.connect(keys.url, { useNewUrlParser: true, useUnifiedTopology: true });
+
 const app = express();
+
+app.use (
+    cookieSession({
+       maxAge: 30 * 24 * 60 * 60 * 1000,
+       keys: [keys.cookieKey]
+    })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 require('./routes/authRoutes')(app);
 
 const PORT = process.env.PORT || 5000;
