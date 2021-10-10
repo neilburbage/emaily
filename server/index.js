@@ -9,8 +9,17 @@ const passport = require('passport');
 const keys = require('./config/keys');
 require('./models/User');
 require('./services/passport');
+const { MongoClient } = require('mongodb');
 
 mongoose.connect(keys.url, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const client = new MongoClient(keys.url, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
 
 const app = express();
 
@@ -30,3 +39,8 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, ()=>{
     setInterval(()=>console.log('Listening on port ${PORT}\nDB Connection status: ${mongoose.connection.readyState}'), 5000)    
 });
+
+
+
+
+
